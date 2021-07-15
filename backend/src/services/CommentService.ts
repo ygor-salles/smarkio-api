@@ -30,11 +30,7 @@ class CommentService {
 
     async readById(id: number) {
         try {
-            const comment = await this.connectComment.findOne({ id });
-            if (!comment) {
-                return { status: 404, message: 'Comment does not exist!' }
-            }
-            return { status: 200, obj: comment }
+            return await this.connectComment.findOne({ id });
         } catch (error) {
             throw error;
         }

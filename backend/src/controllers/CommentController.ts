@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { CommentService } from '../services/CommentService';
 
 class CommentController {
@@ -15,7 +15,7 @@ class CommentController {
             const comment = await commentService.create(description);
             return response.status(201).json(comment);
         } catch (error) {
-            return response.status(400).json({ message: 'Database connection error!' });
+            return response.status(error.status || 400).json({ message: 'Database connection error!' });
         }
     }
 
@@ -25,20 +25,18 @@ class CommentController {
             const comments = await commentService.read();
             return response.status(200).json(comments);
         } catch (error) {
-            return response.status(400).json({ message: 'Database connection error!' });
+            return response.status(error.status || 400).json({ message: 'Database connection error!' });
         }
     }
 
-    async readById(request: Request, response: Response) {
+    async readById(request: Request, response: Response, next: NextFunction) {
         const commentService = new CommentService();
         try {
             const comment = await commentService.readById(+request.params.id);
-            if (comment.status === 200) {
-                return response.status(comment.status).json(comment.obj);
-            }
-            return response.status(comment.status).json({ message: comment.message });
+            request.params.description = comment.description;
+            next();
         } catch (error) {
-            return response.status(400).json({ message: 'Database connection error!' });
+            return response.status(error.status || 400).json({ message: 'Database connection error!' });
         }
     }
 }
