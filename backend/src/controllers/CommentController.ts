@@ -33,8 +33,12 @@ class CommentController {
         const commentService = new CommentService();
         try {
             const comment = await commentService.readById(+request.params.id);
-            request.params.description = comment.description;
-            next();
+            if (comment) {
+                request.params.description = comment.description;
+                next();
+            } else {
+                return response.status(404).json({ message: 'Comment does not exist!' });
+            }
         } catch (error) {
             return response.status(error.status || 400).json({ message: 'Database connection error!' });
         }
