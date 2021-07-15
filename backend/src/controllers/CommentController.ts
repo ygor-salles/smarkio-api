@@ -20,10 +20,23 @@ class CommentController {
     }
 
     async read(request: Request, response: Response) {
-        const commnetService = new CommentService();
+        const commentService = new CommentService();
         try {
-            const comments = await commnetService.read();
+            const comments = await commentService.read();
             return response.status(200).json(comments);
+        } catch (error) {
+            return response.status(400).json({ message: 'Database connection error!' });
+        }
+    }
+
+    async readById(request: Request, response: Response) {
+        const commentService = new CommentService();
+        try {
+            const comment = await commentService.readById(+request.params.id);
+            if (comment.status === 200) {
+                return response.status(comment.status).json(comment.obj);
+            }
+            return response.status(comment.status).json({ message: comment.message });
         } catch (error) {
             return response.status(400).json({ message: 'Database connection error!' });
         }
