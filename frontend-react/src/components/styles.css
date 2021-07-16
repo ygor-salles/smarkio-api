@@ -1,0 +1,67 @@
+.app-container {
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    /* margin-top: 2rem; */
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    flex: 50%;
+}
+
+.right-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    flex: 50%;
+}
+
+@media (max-width: 800px) {
+    .app-container {
+        flex-direction: column;
+    }
+}
+
+textarea, .button-cadastrar {
+    width: 70%;
+}
+
+textarea {
+    height: 7rem;
+}
+
+.button-cadastrar {
+    margin-top: 30px;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #b3abab8f;
+    font-size: medium;
+    border: solid 1px black;
+    color: #363636;
+    font-weight: 600;
+}
+
+.item-conatiner {
+    display: flex;
+    flex-direction: row;
+}
+
+.text-comment {
+    display: flex;
+    flex: 85%;
+    padding: 20px;
+}
+
+.button-comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: solid 1px black;
+    flex: 15%;
+    margin: 30px 0 30px 0;
+}
