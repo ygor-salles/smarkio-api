@@ -10,4 +10,4 @@ app.use(express.json());
 app.use(cors());
 app.use(routes);
 
-app.listen(process.env.API_PORT, () => console.log(`Server is running ${process.env.API_PORT}`));
+app.listen(process.env.PORT, () => console.log(`Server is running ${process.env.PORT}`));
