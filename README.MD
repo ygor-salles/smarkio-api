@@ -1,6 +1,26 @@
-# App Smarkio
+# tech4-api
 
-Desenvolver uma aplicação web em Node.js com banco de dados MySQL . A aplicação
+<h4 align="center">
+    :computer: Api para registro de comentários e escuta de comentários
+</h4>
+
+<p align="center">
+    <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#user-content-clipboard-instruções">Instruções</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#%EF%B8%8F-comandos-básicos-para-as-migrations">Migrations</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#-gerar-o-build">Build</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#-ajustes-e-melhorias">Melhorias</a>
+</p>
+
+<div align="center">
+    <img alt="Modelagem" src="./assets/modelagem.PNG" >
+</div>
+ 
+----
+ ## 💻 Projeto
+
+API em ExpressJS. Desenvolver uma aplicação web em Node.js com banco de dados MySQL . A aplicação
 consistirá somente de uma página com dois painéis: no painel posicionado a esquerda, o
 usuário poderá cadastrar novos comentários. No painel da direita todos os comentários
 cadastrados devem ser listados, com um botão ao lado de cada um que ao ser clicado
@@ -12,65 +32,94 @@ API Text to Speech do IBM Watson .
 As operações de cadastro e atualização da lista de comentários devem ser realizadas via
 AJAX.
 
-### Tecnologias utilizadas no banco de dados
+- A resolução completa desse projeto se encontra em um pdf dentro da pasta `./assets`
 
-* Banco de dados relacional: mysql
+---
 
-### Tecnologias utilizadas no backend:
+## :rocket: Tecnologias
 
-* Liguagem: NodeJS, Typescript/Javascript
-* Framework: ExpressJS
-* ORM: Typeorm
-* API externa: IBM Watson
-* Outras Libs: mysql, cors, reflect-metadata, mysql
+- [Typescript](https://www.typescriptlang.org/)
+- [ExpressJS](https://expressjs.com/pt-br/)
+- [Typeorm](https://typeorm.io/)
+- [Docker](https://www.docker.com/)
+- [MySQL](https://www.mysql.com/)
+- [IBM-Watson](https://www.ibm.com/cloud/watson-text-to-speech)
 
-### Tecnologias utilizadas no frontend:
-
-* Linguagem: Typescript/Javascript, HTML, CSS
-* Framework/Lib: ReactJS
-* Outras Libs: axios
+---
 
 ## :clipboard: Instruções
 
-### BACKEND
+### VARIÁVEIS DE AMBIENTE
 
-- Criar um banco no mysql workbench, exemplo: smarkio_app
+- Criar na raiz da pasta do projeto um arquivo `.env` e preencher as informações conforme se encontra no arquivo `.env_example`.
 
-- Entrar no repositório backend do projeto com o terminal e executar o seguinte comando para instalar as dependências:
+### DOCKER
+
+- Após preenchida as variáveis de ambiente, subir o container do docker pelo terminal com o comando:
+
+```bash
+docker-compose up
+```
+
+### DEPENDÊNCIAS
+
+- No terminal executar o comando para instalar as dependências:
+
 ```bash
 yarn
 ```
 
-- Após todas as dependências instaladas criar na raiz da pasta backend um arquivo `.env`
-e preencher as informações conforme se encontra no arquivo `.env_example`. 
+### MIGRATIONS
 
-- Rodar a migration, executando no terminal:
+- No terminal executar as migrations para criar as tabelas do banco de dados, com o comando:
+
 ```bash
 yarn typeorm migration:run
 ```
 
+### START
+
 - Finalizado! Basta agora executar a aplicação backend com o seguinte comando:
+
 ```bash
 yarn dev
 ```
 
-- A Api estará rodando na porta conforme definido no arquivo .env em API_PORT, por padrão utilize
-a porta 3333. `http://localhost:3333`
+- A Api estará rodando na porta conforme definido no arquivo .env em PORT, por padrão utilize
+  a porta 4000. `http://localhost:4000`
 
-### FRONTEND
+---
 
-- Ir com o terminal na pasta frontend-react e executar o seguinte comando ppara instalar as dependências:
+## ⚙️ Comandos básicos para as migrations
+
+- Criar uma migration
+
 ```bash
-yarn
+yarn typeorm migration:create -n CreateExample
 ```
 
-- Finalizado! Basta agora executar a aplicação frontend com o seguinte comando:
+- Rodar as migrations
+
 ```bash
-yarn start
+yarn typeorm migration:run
 ```
 
-- O frontend estará rodando em `http://localhost:3000`
+- Desfazer alterações da migration
 
-- Atenção caso tenha setado outra porta no .env do backend será necessário trocar o caminho no diretório do
-frontend, em fronted-react/src/service/api.ts. Por padrão a api está rodando em `http://localhost:3333`.
+```bash
+yarn typeorm migration:revert
+```
 
+---
+
+## 📬 Gerar o build
+
+```bash
+yarn build
+```
+
+---
+
+## 📌 Ajustes e melhorias
+
+Até o momento não há nenhuma nova feature para a api
