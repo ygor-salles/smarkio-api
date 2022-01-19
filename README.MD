@@ -1,4 +1,4 @@
-# tech4-api
+# smarkio-api
 
 <h4 align="center">
     :computer: Api para registro de comentários e escuta de comentários
